@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Sirensa Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #602848;
+            font-family:Arial, Helvetica, sans-serif, ;
+        }
+        #calculator {
+            border: 1px solid #333;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            background-color: #aa7fa1;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        #calculator h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+        #calculator p {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0f0c0c;
+            align-self: center;
+        }
+        #inputExpression {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #b83333;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+            color: #f3e660;
+            width: 100%;
+            align-self: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+        #calculate {
+            background-color: #8c67dd;
+            color: rgb(12, 5, 5);
+        }
+        #clear {
+            background-color: #ff21bc;
+            color: rgb(13, 7, 7);
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <h1>Calculator</h1>
+        <p> YOO Enter the expression and get the results</p>
+        <input type="text" id="inputExpression" placeholder="Enter expression" />
+        <button id="calculate">Result</button>
+        <button id="clear">Clear</button>
+        <div id="result">Result: <span id="calculationResult"></span></div>
+    </div>
+
+    <script>
+        document.getElementById('calculate').addEventListener('click', function() {
+            try {
+                const result = eval(document.getElementById('inputExpression').value);
+                if (!isNaN(result)) {
+                    document.getElementById('calculationResult').textContent = result;
+                } else {
+                    document.getElementById('calculationResult').textContent = 'Invalid expression';
+                }
+            } catch {
+                document.getElementById('calculationResult').textContent = 'Invalid expression';
+            }
+        });
+
+        document.getElementById('clear').addEventListener('click', function() {
+            document.getElementById('inputExpression').value = '';
+            document.getElementById('calculationResult').textContent = '';
+        });
+
+        document.getElementById('inputExpression').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('calculate').click();
+            }
+        });
+    </script>
+</body>
+</html>
